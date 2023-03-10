@@ -1,0 +1,76 @@
+<div class="container p-5" *ngIf="visibilidadeTabela">
+  <div class="border border-light rounded p-5">
+    <div>
+      <button type="button" class="btn btn-sm btn-secondary" (click)="ExibirFormularioCadastro()">
+        Nova Pessoa
+      </button>
+    </div>
+
+    <hr />
+
+    <table class="table table-striped table-houver table-sm" *ngIf="pessoas">
+      <tr class="thead-light">
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>Idade</th>
+        <th>Profissão</th>
+        <th>Ações</th>
+      </tr>
+
+      <tr *ngFor="let pessoa of pessoas">
+        <td>{{pessoa.nome}}</td>
+        <td>{{pessoa.sobrenome}}</td>
+        <td>{{pessoa.idade}}</td>
+        <td>{{pessoa.profissao}}</td>
+        <td>
+          <button type="button" class="btn btn-sm btn-outline-info m-2" (click)="ExibirFormularioAtulizado(pessoa.pessoaId)">Atualiza</button>
+          <button type="button" class="btn btn-sm btn-outline-danger" >Excluir</button>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+</div>
+
+<div class="container p-5 body" *ngIf="visibilidadeFormulario">
+  <div class="row">
+    <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formulario">
+      <h6>{{tituloFormulario}}</h6>
+      <hr />
+
+      <form [formGroup]="formulario" (ngSubmit)="EnviarFormulario()">
+        <div class="form-group">
+          <label>Nome</label>
+          <input type="text" class="form-control form-control-sm" formControlName="nome" />
+        </div>
+
+        <div class="form-group">
+          <label>Sobrenome</label>
+          <input type="text" class="form-control form-control-sm" formControlName="sobrenome" />
+        </div>
+
+        <div class="form-group">
+          <label>Idade</label>
+          <input type="number" class="form-control form-control-sm" formControlName="idade" />
+        </div>
+
+        <div class="form-group">
+          <label>Profissão</label>
+          <input type="text" class="form-control form-control-sm" formControlName="profissao" />
+        </div>
+
+        <div class="container">
+            <div class="btn1">
+              <button type="submit" class="btn btn-outline-secondary">
+                Salvar
+              </button>
+              <button type="button" class="btn btn-light" (click)="Voltar()">Voltar</button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
